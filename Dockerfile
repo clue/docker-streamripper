@@ -8,5 +8,9 @@ RUN useradd -m -d /home/streamripper streamripper
 USER streamripper
 WORKDIR /home/streamripper
 
-ENTRYPOINT ["streamripper"]
+# expose relay port
+EXPOSE 8000
+
+ADD run.sh /run.sh
+ENTRYPOINT ["/run.sh"]
 VOLUME /home/streamripper
