@@ -22,26 +22,26 @@ This docker image is available as a [trusted build on the docker index](https://
 so using it is as simple as running:
 
 ```bash
-$ docker run clue/streamripper --help
+$ docker run clue/streamripper -h
 ```
 
 Using this image for the first time will start a download automatically.
 Further runs will be immediate, as the image will be cached locally.
 
 Docker containers run in an isolated environment, so in order to access your ripped mp3 files
-you will have to mount a volume (directory like this):
+you will have to mount a volume (shared directory) like this:
 
 ```bash
-$ docker run -v $HOME/MyMusic:/home/streamripper clue/streamripper …
+$ docker run -v $HOME/MyMusic:/home/streamripper clue/streamripper […]
 ```
 
 We're almost done. Now you need to get the streaming URL of your favorite online radio station.
 The [SHOUTcast](http://www.shoutcast.com/) index is probably a good start if you're unsure.
-This URL will need to be passed as an argument to the streamripper container.
+The streaming URL to your online radio station will need to be passed as an argument to the streamripper container.
 
-You can supply any number of streamripper arguments that will be passed through unmodified.
+You can also supply any number of additional streamripper arguments that will be passed through unmodified.
 Describing all of them here is a bit out of scope, so you're recommended to familiarize yourself
-with the `--help` (see above).
+with the help (see the above `-h` example).
 
 A common way to put this all together looks like this:
 
