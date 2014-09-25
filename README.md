@@ -32,7 +32,7 @@ Docker containers run in an isolated environment, so in order to access your rip
 you will have to mount a volume (shared directory) like this:
 
 ```bash
-$ docker run -v $HOME/MyMusic:/home/streamripper clue/streamripper […]
+-v $HOME/MyMusic:/home/streamripper
 ```
 
 We're almost done. Now you need to get the streaming URL of your favorite online radio station.
