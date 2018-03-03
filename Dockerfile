@@ -1,8 +1,9 @@
-FROM ubuntu
+FROM debian:stretch
 MAINTAINER Christian Lück <christian@lueck.tv>
 
-RUN DEBIAN_FRONTEND=noninteractive apt-get update && apt-get install -y \
-	streamripper
+RUN apt-get update && \
+    apt-get install -y --no-install-recommends streamripper && \
+    rm -rf /var/lib/apt/lists/*
 
 RUN useradd -m -d /home/streamripper streamripper
 USER streamripper
