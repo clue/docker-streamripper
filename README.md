@@ -39,3 +39,24 @@ $ docker run -d -v $HOME/MyMusic:/home/streamripper clue/streamripper http://mys
 This will start the streamripper container in a detached session in the background.
 
 This container is disposable, as it doesn't store any sensitive information at all. If you don't need it anymore, you can `stop` and `remove` it.
+
+## Docker Compose
+
+Similarly, you can also use [Docker Compose](https://docs.docker.com/compose/) to configure and run this image. Simply create a `docker-compose.yml` file like this:
+
+```yml
+version: '3'
+services:
+  streamripper:
+    image: clue/streamripper
+    restart: always
+    volumes:
+      - $HOME/MyMusic:/home/streamripper
+    command: http://mystation.local/radio.pls -s -m 30 --xs2 -o never -T
+```
+
+You can then run this as a background service like this:
+
+```bash
+$ docker-compose up -d
+```
