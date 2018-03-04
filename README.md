@@ -38,6 +38,18 @@ $ docker run -d -v $HOME/MyMusic:/home/streamripper clue/streamripper http://mys
 
 This will start the streamripper container in a detached session in the background.
 
+## Relay stream
+
+Streamripper supports creating a "relay stream" that allows clients to connect to the stream that is currently being ripped. This means that you can share the same stream without causing another connection to the remote radio station.
+
+This image is configured to automatically pass the required streamripper options and to automatically expose the streamripper stream relay on port `8000`. If you want to publish this port for outside access, you can simply pass a binding like this:
+
+```
+-p 8000:8000
+```
+
+## Cleanup
+
 This container is disposable, as it doesn't store any sensitive information at all. If you don't need it anymore, you can `stop` and `remove` it.
 
 ## Docker Compose
@@ -50,6 +62,8 @@ services:
   streamripper:
     image: clue/streamripper
     restart: always
+    ports:
+#     - 8000:8000 # optionally publish relay stream
     volumes:
       - $HOME/MyMusic:/home/streamripper
     command: http://mystation.local/radio.pls -s -m 30 --xs2 -o never -T
